@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Book</title>
+</head>
+<body>
+<h1>Delete this Book</h1>
+<a href="/books">Back to List</a>
+<form th:action="@{/delete-book}" th:object="${book}" th:method="post">
+    <table>
+        <tr>
+            <td></td>
+            <td><input type="hidden" th:field="*{id}"></td>
+        </tr>
+        <tr>
+            <td>Code: </td>
+            <td><input type="text" th:field="*{booksCode}" disabled></td>
+            <td th:text="${#fields.hasErrors('booksCode')}" th:errors="*{booksCode}"></td>
+        </tr>
+        <tr>
+            <td>Price: </td>
+            <td><input type="text" th:field="*{price}" disabled></td>
+            <td th:text="${#fields.hasErrors('price')}" th:errors="*{price}"></td>
+        </tr>
+        <tr>
+            <td>Status: </td>
+            <td><input type="text" th:field="*{status}" disabled></td>
+            <td th:text="${#fields.hasErrors('status')}" th:errors="*{status}"></td>
+        </tr>
+        <tr>
+            <td>Discount: </td>
+            <td><input type="text" th:field="*{discount}" disabled></td>
+            <td th:text="${#fields.hasErrors('discount')}" th:errors="*{discount}"></td>
+        </tr>
+        <tr>
+            <td>Company: </td>
+            <td><input type="text" th:field="*{company}" disabled></td>
+            <td th:text="${#fields.hasErrors('company')}" th:errors="*{company}"></td>
+        </tr>
+        <tr>
+            <td>Number: </td>
+            <td><input type="text" th:field="*{number}" disabled></td>
+            <td th:text="${#fields.hasErrors('number')}" th:errors="*{number}"></td>
+        </tr>
+        <tr>
+            <td>Description: </td>
+            <td><input type="text" th:field="*{description}" disabled></td>
+            <td th:text="${#fields.hasErrors('description')}" th:errors="*{description}"></td>
+        </tr>
+        <tr>
+            <td>Category: </td>
+            <td>
+                <select th:filed="*{category}" disabled>
+                    <option th:value="${book.category.id}" th:text="${book.category.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" th:value="Delete"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

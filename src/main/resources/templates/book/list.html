@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Books List</title>
+</head>
+<body>
+    <h1>Books List</h1>
+    <a href="/create-book">Create a Book</a>
+    <form>
+        Search by Code:
+        <input name="s" th:value="${search}">
+        <input type="submit" th:value="Search">
+    </form>
+    <table border="1">
+        <tr>
+            <td>ID</td>
+            <td>Code</td>
+            <td>Price</td>
+            <td>Status</td>
+            <td>Discount</td>
+            <td>Company</td>
+            <td>Number</td>
+            <td>Description</td>
+            <td>Category</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+        <th:block th:each="book : ${books}">
+            <tr>
+                <td th:text="${book.id}"></td>
+                <td th:text="${book.booksCode}"></td>
+                <td th:text="${book.price}"></td>
+                <td th:text="${book.status}"></td>
+                <td th:text="${book.discount}"></td>
+                <td th:text="${book.company}"></td>
+                <td th:text="${book.number}"></td>
+                <td th:text="${book.description}"></td>
+                <td th:text="${book.category.name}"></td>
+                <td><a th:href="@{/edit-book/__${book.id}__}">Edit</a></td>
+                <td><a th:href="@{/delete-book/__${book.id}__}">Delete</a></td>
+            </tr>
+        </th:block>
+    </table>
+    <a th:href="@{'books'(page=${books.number - 1}, s=${search})}" th:if="${books.hasPrevious()}">Previous</a>
+    <span th:text="${books.number + 1}"></span>/<span th:text="${books.totalPages}"></span>
+    <a th:href="@{'books'(page=${books.number + 1}, s=${search})}" th:if="${books.hasNext()}">Next</a>
+</body>
+</html>

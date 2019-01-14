@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Book</title>
+</head>
+<body>
+<h1>Edit this Book</h1>
+<a href="/books">Back to List</a>
+<th:block th:if="${mess}">
+    <span th:text="${mess}"></span>
+</th:block>
+<form th:action="@{/edit-book/__${book.id}__}" th:object="${book}" th:method="post">
+    <table>
+        <tr>
+            <td>Code: </td>
+            <td><input type="text" th:field="*{booksCode}"></td>
+            <td th:if="${#fields.hasErrors('booksCode')}" th:errors="*{booksCode}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Price: </td>
+            <td><input type="text" th:field="*{price}"></td>
+            <td th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Status: </td>
+            <td><input type="text" th:field="*{status}"></td>
+            <td th:if="${#fields.hasErrors('status')}" th:errors="*{status}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Discount: </td>
+            <td><input type="text" th:field="*{discount}"></td>
+            <td th:if="${#fields.hasErrors('discount')}" th:errors="*{discount}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Company: </td>
+            <td><input type="text" th:field="*{company}"></td>
+            <td th:if="${#fields.hasErrors('company')}" th:errors="*{company}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Number: </td>
+            <td><input type="text" th:field="*{number}"></td>
+            <td th:if="${#fields.hasErrors('number')}" th:errors="*{number}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Description: </td>
+            <td><input type="text" th:field="*{description}"></td>
+            <td th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Category: </td>
+            <td>
+                <select th:field="*{category}">
+                    <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" th:value="Edit"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
